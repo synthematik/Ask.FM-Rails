@@ -6,6 +6,11 @@ class QuestionsController < ApplicationController
     )
   end
 
+  def show
+    @question = Question.find(params[:id])
+
+  end
+
   def update
     @question = Question.find(params[:id])
     @question.update(
@@ -17,5 +22,9 @@ class QuestionsController < ApplicationController
   def destroy
     @question = Question.find(params[:id])
     @question.destroy
+  end
+
+  def index
+    @questions = Question.all
   end
 end

@@ -1,0 +1,14 @@
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <% @questions.each do |question| %>
+        <div class="card mb-3">
+          <div class="card-body">
+            <h5 class="card-title"><%= question.body.truncate(50) %></h5>
+            <%= link_to 'Подробнее', question_path(question.id), class: 'btn btn-dark' %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

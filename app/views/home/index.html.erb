@@ -1,0 +1,22 @@
+<body>
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-md-8">
+      <h1>Добро пожаловать на Ask.FM</h1>
+      <p>Задавайте вопросы, отвечайте на них и общайтесь с другими пользователями.</p>
+    </div>
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Последние вопросы</h5>
+          <ul class="list-group list-group-flush">
+            <% @questions.each do |question| %>
+              <li class="list-group-item"><%= question.body.truncate(50) %></li>
+              <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
