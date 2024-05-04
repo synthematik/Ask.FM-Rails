@@ -1,0 +1,16 @@
+<div class="container mt-4">
+  <h2>Изменить вопрос</h2>
+  <%= form_with model: @question do |form| %>
+    <div class="mb-3">
+      <%= form.label :body, class: "form-label" %>
+      <%= form.text_area :body, class: "form-control" %>
+    </div>
+    <div class="mb-3">
+      <%= form.label :user_id, class: "form-label" %>
+      <%= form.number_field :user_id, class: "form-control" %>
+    </div>
+    <div class="d-grid">
+      <%= form.submit "Изменить", class: "btn btn-dark" %>
+    </div>
+  <% end %>
+</div>

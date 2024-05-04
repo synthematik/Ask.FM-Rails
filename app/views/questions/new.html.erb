@@ -1,0 +1,17 @@
+
+<div class="container mt-5">
+  <h2>Создать вопрос</h2>
+
+  <%= form_with model: @question do |form| %>
+    <div class="mb-3">
+      <%= form.label :body, "Текст вопроса", class: "form-label" %>
+      <%= form.text_area :body, class: "form-control", rows: "3" %>
+    </div>
+    <div class="mb-3">
+      <%= form.label :user_id, class: "form-label" %>
+      <%= form.number_field :user_id, class: "form-control" %>
+    </div>
+    <%= form.submit "Создать", class: "btn btn-dark" %>
+  <% end %>
+</div>
+
