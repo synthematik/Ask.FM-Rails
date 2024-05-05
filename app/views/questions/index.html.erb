@@ -5,7 +5,7 @@
         <div class="card mb-3">
           <div class="card-body">
             <h5 class="card-title"><%= question.body.truncate(50) %></h5>
-            <%= link_to 'Подробнее', question_path(question.id), class: 'btn btn-dark' %>
+            <%= link_to 'Подробнее', question_path(question.id), class: 'btn btn-secondary' %>
           </div>
         </div>
       <% end %>
