@@ -22,13 +22,15 @@ class QuestionsController < ApplicationController
   end
 
   def destroy
-    @question.destroy
+    @question.update(
+      archived_at: Time.now
+    )
 
     redirect_to questions_path
   end
 
   def index
-    @questions = Question.all
+    @questions = Question.all_current
   end
 
   def new
