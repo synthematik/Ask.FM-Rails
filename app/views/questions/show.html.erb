@@ -3,7 +3,8 @@
     <div class="col-md-8 offset-md-2">
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title"><%= @question.body %></h5>
+          <p><small class="text-body-secondary"> <%= l(@question.updated_at, format: :short) %> </small></p>
+          <h5 class="card-title" style="margin-bottom: 25px"><%= @question.body %></h5>
           <a href="#" class="btn btn-secondary">Ответить</a>
           <%= link_to 'Изменить вопрос', edit_question_path(@question), class: "btn btn-success" %>
           <div style="margin-top: 1%">
