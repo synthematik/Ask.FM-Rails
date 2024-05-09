@@ -6,7 +6,7 @@ class QuestionsController < ApplicationController
       question_params
     )
 
-    redirect_to question_path(question)
+    redirect_to question_path(question), notice: "Вопрос создан"
   end
 
   def show
@@ -18,7 +18,7 @@ class QuestionsController < ApplicationController
       question_params
     )
 
-    redirect_to question_path(@question)
+    redirect_to question_path(@question), notice: "Вопрос обновлен"
   end
 
   def destroy
@@ -26,11 +26,12 @@ class QuestionsController < ApplicationController
       archived_at: Time.now
     )
 
-    redirect_to questions_path
+    redirect_to questions_path, notice: "Вопрос удален"
   end
 
   def index
     @questions = Question.all_current
+    @questions_form = Question.new
   end
 
   def new
