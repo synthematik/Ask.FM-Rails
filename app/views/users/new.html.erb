@@ -1,0 +1,19 @@
+
+<div class="flex items-center justify-center h-screen bg-gray-100" style="margin-left: 37%; margin-top: 10%;">
+  <div class="card p-3" style="width: 400px;">
+    <div class="form-group">
+      <%= form_with model: @user do |form| %>
+        <label for="name" class="mb-1"><%= form.label :name, 'Имя' %></label>
+        <input class="form-control mb-2" id="name" placeholder="Александр" <%= form.text_field :name, class: 'form-text-field' %>
+
+        <label for="nickname" class="mb-1"><%= form.label :nickname, 'Имя пользователя' %></label>
+        <input class="form-control mb-2" id="nickname" placeholder="@sanya" <%= form.text_field :nickname, class: 'form-text-field' %>
+
+        <label for="email" class="mb-1"><%= form.label :email, class: 'mb-1' %></label>
+        <input class="form-control mb-2" id="email" placeholder="name@mail.ru" <%= form.text_field :email, class: 'form-email-field mb-2' %>
+
+        <div style="margin-top: 20px"><%= form.submit 'Зарегистрироваться', class: "btn btn-secondary btn-block mb-3"%></div>
+      <% end %>
+    </div>
+  </div>
+</div>
