@@ -36,14 +36,27 @@
             <a class="nav-link" href="/users">Пользователи</a>
           </li>
         </ul>
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="/login">Войти</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/users/new">Зарегистрироваться</a>
-          </li>
-        </ul>
+        <% if current_user.present? %>
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#"><%= "@#{current_user.nickname}" %></a>
+            </li>
+            <li class="nav-item" style="width: 10px;">
+              <%= button_to 'Выйти', session_path, method: :delete, class: "btn btn-danger" %>
+            </li>
+          </ul>
+        <%else %>
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="/session/new">Войти</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/users/new">Зарегистрироваться</a>
+            </li>
+          </ul>
+
+        <% end %>
+
 
       </div>
     </div>
@@ -53,7 +66,7 @@
     <div class="container mt-4">
       <div class="row justify-content-center">
         <div class="col-md-8">
-          <% if flash[:notice] == "Вопрос удален" %>
+          <% if flash[:notice] == "Вопрос удален" or flash[:notice] == "Неправильный email или пароль" %>
           <div class="alert alert-danger alert-dismissible fade show" role="alert">
               <%= flash[:notice] %>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
