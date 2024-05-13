@@ -16,6 +16,14 @@
         <input class="form-control mb-2" id="password" placeholder="******" <%= form.password_field :password, class: 'form-email-field mb-2' %>
 
         <div style="margin-top: 20px"><%= form.submit 'Зарегистрироваться', class: "btn btn-secondary btn-block mb-3"%></div>
+
+        <span class="mt-2">
+                Уже зарегистрированы?
+                <a href="/session/new"
+                   class="underline text-blue-600 hover:text-blue-800 visited:text-purple-600">
+                    Войти
+                </a>
+        </span>
       <% end %>
     </div>
   </div>

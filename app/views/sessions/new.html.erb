@@ -11,6 +11,14 @@
         <input class="form-control mb-2" id="password" placeholder="*******" <%= form.password_field :password, class: 'form-password-field' %>
 
         <div style="margin-top: 20px"><%= form.submit 'Войти', class: "btn btn-secondary btn-block mb-3"%></div>
+
+        <span class="mt-2">
+                Нет аккаунта?
+                <a href="/users/new"
+                   class="underline text-blue-600 hover:text-blue-800 visited:text-purple-600">
+                    Зарегистрироваться
+                </a>
+        </span>
       <% end %>
     </div>
   </div>

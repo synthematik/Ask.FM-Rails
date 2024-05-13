@@ -18,7 +18,7 @@
   <body>
 
 
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
       <a class="navbar-brand" href="/">Ask.FM</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -39,10 +39,14 @@
         <% if current_user.present? %>
           <ul class="navbar-nav ms-auto">
             <li class="nav-item">
-              <a class="nav-link" href="#"><%= "@#{current_user.nickname}" %></a>
-            </li>
-            <li class="nav-item" style="width: 10px;">
-              <%= button_to 'Выйти', session_path, method: :delete, class: "btn btn-danger" %>
+              <div class="dropdown">
+                <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><%= "@#{current_user.nickname}" %></a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="/users/">Мой профиль</a></li>
+                  <li><a class="dropdown-item" href="#">Мои вопросы</a></li>
+                  <li><a class="dropdown-item nav-item" href="#"><%= button_to 'Выйти', session_path, method: :delete, class: "btn btn-danger" %></a></li>
+                </ul>
+              </div>
             </li>
           </ul>
         <%else %>
