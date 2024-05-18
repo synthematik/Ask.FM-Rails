@@ -4,8 +4,7 @@
       <% @questions.each do |question| %>
         <div class="card mb-3">
           <div class="card-body">
-            <p><small class="text-body-secondary"> <%= l(question.updated_at, format: :short) %> </small></p>
-            <h5 class="card-title" style="margin-bottom: 25px"><%= question.body.truncate(50) %></h5>
+            <%= render 'question', question: question %>
             <%= link_to 'Подробнее', question_path(question.id), class: 'btn btn-secondary' %>
           </div>
         </div>
