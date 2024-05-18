@@ -2,31 +2,36 @@
   <div class="row justify-content-center">
     <div class="col-md-8">
       <div class="user-profile">
-        <div class="profile-header">
-          <h1>Мой профиль</h1>
-        </div>
-        <div class="profile-body">
-          <div class="profile-info">
-            <h3><%= @user.name %></h3>
-            <p>Имя пользователя: <%= "@#{@user.nickname}" %></p>
-            <p>Email: <%= @user.email %></p>
+        <div class="profile-header text-center">
+          <%= image_tag @user.avatar.url(:thumb), class: "rounded-circle mb-3", alt: @user.name, width: "150", height: "150" %>
+          <h1 class="display-4"><b><%= @user.name %></b></h1>
+          <p class="text-muted">@<%= @user.nickname %></p>
+          <p><%= @user.email %></p>
+          <div class="mb-3">
+            <%= link_to 'Редактировать профиль', edit_user_path(@user), class: "btn btn-primary" %>
           </div>
+        </div>
+        <hr>
+        <div class="profile-body">
           <div class="profile-questions">
-            <h2>Мои вопросы</h2>
+            <h2 class="h4">Мои вопросы</h2>
             <% if @user.questions.any? %>
-              <ul>
+              <div class="list-group">
                 <% @user.questions.each do |question| %>
-                  <div class="card" style="background-color: #f8f9fa; margin-left: -30px">
-                    <div class="card-body">
-                      <%= render partial: "questions/question", locals:{ question: question} %>
-                      <%= button_to 'Ответить', question_path(question),class: "btn btn-secondary"%>
+                  <div class="list-group-item list-group-item-action">
+                    <div class="d-flex w-100 justify-content-between">
+                      <h5 class="mb-1"><%= question.body.truncate(50) %></h5>
+                      <small><%= time_ago_in_words(question.created_at) %> назад</small>
+                    </div>
+                    <p class="mb-1"><%= question.body %></p>
+                    <div class="d-flex justify-content-end">
+                      <%= button_to 'Ответить', question_path(question), class: "btn btn-secondary btn-sm" %>
                     </div>
                   </div>
-
                 <% end %>
-              </ul>
+              </div>
             <% else %>
-              <p>Вопросов пока нет</p>
+              <p class="text-muted">Вопросов пока нет</p>
             <% end %>
           </div>
         </div>

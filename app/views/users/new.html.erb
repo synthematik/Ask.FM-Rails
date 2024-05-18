@@ -1,8 +1,18 @@
 
-<div class="flex items-center justify-center h-screen bg-gray-100" style="margin-left: 37%; margin-top: 10%;">
+<div class="flex items-center justify-center h-screen bg-gray-100" style="margin-left: 37%; margin-top: 5%;">
   <div class="card p-3" style="width: 400px;">
     <div class="form-group">
-      <%= form_with model: @user do |form| %>
+      <%= form_with model: @user, html: { multipart: true } do |form| %>
+        <% if @user.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+            <ul>
+              <% @user.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+          <%end %>
         <label for="name" class="mb-1"><%= form.label :name, 'Имя' %></label>
         <input class="form-control mb-2" id="name" placeholder="Александр" <%= form.text_field :name, class: 'form-text-field' %>
 

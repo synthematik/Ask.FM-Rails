@@ -8,6 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "user_profile", media: "all", "data-turbo-track": "reload" %>
     <script>
         setTimeout(function() {
             document.querySelector('.alert').remove();
@@ -23,7 +24,7 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav" style="margin-left: 30%">
+        <ul class="navbar-nav" style="margin-left: 35%">
           <li class="nav-item">
             <a class="nav-link" href="/">Главная</a>
           </li>
@@ -38,8 +39,8 @@
           <ul class="navbar-nav ms-auto">
             <li class="nav-item">
               <div class="dropdown">
-                <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><%= "@#{current_user.nickname}" %></a>
-                <ul class="dropdown-menu">
+                <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><%= image_tag current_user.avatar.url(:thumb), class: "rounded-circle", alt: current_user.name, width: "40", height: "40" %></a>
+                <ul class="dropdown-menu" style="margin-left: -40px">
                   <%= button_to 'Мой профиль', user_path(current_user.id), method: :get, class: "dropdown-item"%>
                   <li><a class="dropdown-item nav-item"><%= button_to 'Выйти', session_path, method: :delete, class: "btn btn-danger" %></a></li>
                 </ul>
