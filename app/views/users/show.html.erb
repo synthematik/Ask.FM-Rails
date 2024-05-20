@@ -15,9 +15,9 @@
         <div class="profile-body">
           <div class="profile-questions">
             <h2 class="h4">Мои вопросы</h2>
-            <% if @user.questions.any? %>
+            <% if @user_questions %>
               <div class="list-group">
-                <% @user.questions.each do |question| %>
+                <% @user_questions.each do |question| %>
                   <div class="list-group-item list-group-item-action">
                     <div class="d-flex w-100 justify-content-between">
                       <h5 class="mb-1"><%= question.body.truncate(50) %></h5>
