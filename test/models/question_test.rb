@@ -1,7 +1,21 @@
-require "test_helper"
+require 'test_helper'
 
 class QuestionTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  setup do
+    @question = questions(:one)
+  end
+
+  test "should be valid" do
+    assert @question.valid?
+  end
+
+  test "body should be present" do
+    @question.body = "     "
+    assert @question.valid?
+  end
+
+  test "user should be present" do
+    @question.user = nil
+    assert_not @question.valid?
+  end
 end

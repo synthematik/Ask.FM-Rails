@@ -8,7 +8,7 @@ class UsersController < ApplicationController
       user_params
     )
 
-    if @user.&save
+    if @user.save
       redirect_to root_path, notice: 'Регистрация прошла успешно'
     else
       render :new
