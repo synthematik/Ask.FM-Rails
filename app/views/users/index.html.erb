@@ -4,9 +4,39 @@
       <% @users.each do |user| %>
         <div class="card mb-3">
           <div class="card-body">
-            <p><small class="text-body-secondary"> <%= l(user.updated_at, format: :short) %> </small></p>
-            <h5 class="card-title" style="margin-bottom: 25px"><%= user.nickname.truncate(50) %></h5>
-            <%= link_to 'Подробнее', user_path(user.id), class: 'btn btn-secondary' %>
+            <div class="d-flex align-items-center">
+              <%= image_tag user.avatar.url(:thumb), class: "rounded-circle me-3", alt: user.name, width: "50", height: "50" %>
+              <div>
+                <h5 class="card-title mb-0"><%= user.name %></h5>
+                <p class="text-muted mb-0">@<%= user.nickname %></p>
+                <small class="text-body-secondary"><%= l(user.updated_at, format: :short) %></small>
+              </div>
+            </div>
+            <hr>
+            <div class="profile-questions">
+              <h6>Последние вопросы:</h6>
+              <% recent_questions = user.questions.order(created_at: :desc).limit(3) %>
+              <% if recent_questions.any? %>
+                <div class="list-group">
+                  <% recent_questions.each do |question| %>
+                    <div class="list-group-item list-group-item-action mb-2">
+                      <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                          <h5 class="mb-1"><%= link_to question.body.truncate(30), question_path(question), class: "text" %></h5>
+                          <small class="text"><%= question.body.truncate(50) %></small>
+                        </div>
+                        <small class="text"><%= time_ago_in_words(question.created_at) %> назад</small>
+                      </div>
+                    </div>
+                  <% end %>
+                </div>
+              <% else %>
+                <p class="text-muted">Нет вопросов</p>
+              <% end %>
+            </div>
+            <div class="d-flex justify-content-end mt-3">
+              <%= link_to 'Подробнее', user_path(user), class: 'btn btn-secondary btn-sm' %>
+            </div>
           </div>
         </div>
       <% end %>

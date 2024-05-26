@@ -20,10 +20,50 @@
 .profile-questions .list-group-item {
     background-color: #f9f9f9;
     border: 1px solid #e1e4e8;
+    border-radius: 8px;
+    padding: 16px;
     margin-bottom: 10px;
 }
 
 .profile-questions .btn-secondary {
     background-color: #6c757d;
     border-color: #6c757d;
+}
+
+.card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 16px;
+}
+
+.card .card-body {
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-questions .list-group-item h5 {
+    margin-bottom: 0.5rem;
+}
+
+.profile-questions .list-group-item small {
+    color: #6c757d;
+}
+
+.profile-questions .list-group-item a {
+    color: #000; /* Черный цвет для ссылок */
+    text-decoration: none; /* Убираем подчеркивание */
+}
+
+.profile-questions .list-group-item a:hover {
+    color: #007bff; /* Синий цвет при наведении */
+    text-decoration: underline; /* Подчеркивание при наведении */
+}
+
+.question-content {
+    background-color: #f9f9f9;
+    border: 1px solid #e1e4e8;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 10px;
 }

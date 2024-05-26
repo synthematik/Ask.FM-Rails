@@ -11,10 +11,59 @@
           <h5 class="card-title">Последние вопросы</h5>
           <ul class="list-group list-group-flush">
             <% @questions.each do |question| %>
-              <li class="list-group-item"><%= question.body.truncate(50) %></li>
-              <% end %>
+              <li class="list-group-item">
+                <div class="d-flex justify-content-between align-items-center">
+                  <div>
+                    <%= link_to question.body.truncate(50), question_path(question), class: 'text-decoration-none' %>
+                    <p class="text-muted mb-0"><%= question.body.truncate(50) %></p>
+                  </div>
+                  <small class="text-muted"><%= time_ago_in_words(question.created_at) %> назад</small>
+                </div>
+              </li>
+            <% end %>
           </ul>
         </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-4">
+    <div class="col-md-12">
+      <h5>Популярные пользователи</h5>
+      <div class="row">
+        <% @users.each do |user| %>
+          <div class="col-md-4">
+            <div class="card mb-3">
+              <div class="card-body">
+                <div class="d-flex align-items-center">
+                  <%= image_tag user.avatar.url(:thumb), class: "rounded-circle me-3", alt: user.name, width: "50", height: "50" %>
+                  <div>
+                    <h5 class="card-title mb-0"><%= user.name %></h5>
+                    <p class="text-muted mb-0">@<%= user.nickname %></p>
+                  </div>
+                </div>
+                <hr>
+                <div class="profile-questions">
+                  <h6>Последние вопросы:</h6>
+                  <% recent_questions = user.questions.order(created_at: :desc).limit(3) %>
+                  <% if recent_questions.any? %>
+                    <ul class="list-group list-group-flush">
+                      <% recent_questions.each do |question| %>
+                        <li class="list-group-item">
+                          <%= link_to question.body.truncate(30), question_path(question), class: "text-decoration-none" %>
+                        </li>
+                      <% end %>
+                    </ul>
+                  <% else %>
+                    <p class="text-muted">Нет вопросов</p>
+                  <% end %>
+                </div>
+                <div class="d-flex justify-content-end mt-3">
+                  <%= link_to 'Подробнее', user_path(user), class: 'btn btn-secondary btn-sm' %>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>

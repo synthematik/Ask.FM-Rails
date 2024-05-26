@@ -1,13 +1,23 @@
 <div class="container mt-4">
-  <div class="row">
-    <div class="col-md-8 offset-md-2">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
       <div class="card">
         <div class="card-body">
-          <%= render 'question', question: @question %>
-          <a href="#" class="btn btn-secondary">Ответить</a>
-          <%= link_to 'Изменить вопрос', edit_question_path(@question), class: "btn btn-success" %>
-          <div style="margin-top: 1%">
-            <%= button_to 'Удалить вопрос', question_path(@question), method: :delete, class: "btn btn-danger" %>
+          <div class="d-flex align-items-center mb-3">
+            <%= image_tag @question.user.avatar.url(:thumb), class: "rounded-circle me-3", alt: @question.user.name, width: "50", height: "50" %>
+            <div>
+              <h5 class="mb-0"><%= @question.user.name %></h5>
+              <p class="text-muted mb-0">@<%= @question.user.nickname %></p>
+            </div>
+          </div>
+          <div class="question-content mb-4">
+            <%= render 'question', question: @question %>
+          </div>
+          <div class="d-flex justify-content-between">
+            <div>
+              <%= link_to 'Изменить вопрос', edit_question_path(@question), class: "btn btn-success me-2 mb-2" %>
+              <%= button_to 'Удалить вопрос', question_path(@question), method: :delete, class: "btn btn-danger" %>
+            </div>
           </div>
         </div>
       </div>
