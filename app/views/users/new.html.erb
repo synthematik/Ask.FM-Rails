@@ -1,29 +1,26 @@
 
 <div class="flex items-center justify-center h-screen bg-gray-100" style="margin-left: 37%; margin-top: 5%;">
+
   <div class="card p-3" style="width: 400px;">
+    <% if @user.errors.any? %>
+      <% @user.errors.full_messages.each do |message| %>
+        <p><%= message %></p>
+      <% end %>
+    <% end %>
     <div class="form-group">
-      <%= form_with model: @user, html: { multipart: true } do |form| %>
-        <% if @user.errors.any? %>
-          <div id="error_explanation">
-            <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
-            <ul>
-              <% @user.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-              <% end %>
-            </ul>
-          </div>
-          <%end %>
-        <label for="name" class="mb-1"><%= form.label :name, 'Имя' %></label>
-        <input class="form-control mb-2" id="name" placeholder="Александр" <%= form.text_field :name, class: 'form-text-field' %>
+      <%= form_with model: @user, html: { multipart: true }, data: { turbo: false } do |form| %>
 
-        <label for="nickname" class="mb-1"><%= form.label :nickname, 'Имя пользователя' %></label>
-        <input class="form-control mb-2" id="nickname" placeholder="sanya" <%= form.text_field :nickname, class: 'form-text-field' %>
+        <%= form.label :name, 'Имя', class: 'mb-1' %>
+        <%= form.text_field :name, class: 'form-control mb-2' %>
 
-        <label for="email" class="mb-1"><%= form.label :email, class: 'mb-1' %></label>
-        <input class="form-control mb-2" id="email" placeholder="name@mail.ru" <%= form.text_field :email, class: 'form-email-field mb-2' %>
+        <%= form.label :nickname, 'Имя пользователя', class: 'mb-1' %>
+        <%= form.text_field :nickname, class: 'form-control mb-2' %>
 
-        <label for="password" class="mb-1"><%= form.label :password, 'Пароль', class: 'mb-1' %></label>
-        <input class="form-control mb-2" id="password" placeholder="******" <%= form.password_field :password, class: 'form-password-field mb-2' %>
+        <%= form.label :email, class: 'mb-1' %>
+        <%= form.text_field :email, class: 'form-control mb-2' %>
+
+        <%= form.label :password, 'Пароль', class: 'mb-1' %>
+        <%= form.password_field :password, class: 'form-control mb-2' %>
 
         <div style="margin-top: 20px"><%= form.submit 'Зарегистрироваться', class: "btn btn-secondary btn-block mb-3"%></div>
 
