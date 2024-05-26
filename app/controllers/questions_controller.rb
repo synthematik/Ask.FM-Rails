@@ -2,11 +2,15 @@ class QuestionsController < ApplicationController
   before_action :set_question, only: %i[show edit update destroy]
 
   def create
-    question = Question.create(
+    @question = Question.new(
       question_params
     )
-
-    redirect_to question_path(question), notice: "Вопрос создан"
+    if @question.save
+      redirect_to @question, notice: 'Вопрос успешно создан.'
+    else
+      @users = User.all
+      render :new
+    end
   end
 
   def show
@@ -32,10 +36,12 @@ class QuestionsController < ApplicationController
   def index
     @questions = Question.all_current
     @questions_form = Question.new
+    @users = User.all
   end
 
   def new
     @question = Question.new
+    @users = User.all
   end
 
   def edit
