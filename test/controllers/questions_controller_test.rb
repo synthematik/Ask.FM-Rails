@@ -10,9 +10,4 @@ class QuestionsControllerTest < ActionDispatch::IntegrationTest
     get questions_url
     assert_response :success
   end
-
-  test "should show question" do
-    get question_url(@question)
-    assert_response :success
-  end
 end

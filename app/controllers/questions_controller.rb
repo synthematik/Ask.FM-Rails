@@ -6,6 +6,9 @@ class QuestionsController < ApplicationController
     @question = Question.new(
       question_params
     )
+
+    @question.user_id = current_user.id
+
     if @question.save
       redirect_to @question, notice: 'Вопрос успешно создан.'
     else
@@ -15,7 +18,8 @@ class QuestionsController < ApplicationController
   end
 
   def show
-
+    @current_user = current_user
+    @answers = @question.answers.includes(:user)
   end
 
   def update
@@ -50,7 +54,7 @@ class QuestionsController < ApplicationController
 
   private
   def question_params
-    params.require(:question).permit(:body, :user_id)
+    params.require(:question).permit(:body)
   end
 
   def set_question

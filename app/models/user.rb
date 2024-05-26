@@ -4,6 +4,7 @@ class User < ApplicationRecord
   before_save :downcase_nickname
 
   has_many :questions, dependent: :destroy
+  has_many :answers
 
   mount_uploader :avatar, AvatarUploader
 

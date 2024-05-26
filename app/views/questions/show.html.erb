@@ -1,7 +1,7 @@
 <div class="container mt-4">
   <div class="row justify-content-center">
     <div class="col-md-8">
-      <div class="card">
+      <div class="card mb-3">
         <div class="card-body">
           <div class="d-flex align-items-center mb-3">
             <%= image_tag @question.user.avatar.url(:thumb), class: "rounded-circle me-3", alt: @question.user.name, width: "50", height: "50" %>
@@ -13,12 +13,45 @@
           <div class="question-content mb-4">
             <%= render 'question', question: @question %>
           </div>
-          <div class="d-flex justify-content-between">
-            <div>
-              <%= link_to 'Изменить вопрос', edit_question_path(@question), class: "btn btn-success me-2 mb-2" %>
-              <%= button_to 'Удалить вопрос', question_path(@question), method: :delete, class: "btn btn-danger" %>
-            </div>
+          <% if current_user && @question.user.id == @current_user.id %>
+          <div class="d-flex justify-content-between mb-3">
+            <%= link_to 'Изменить вопрос', edit_question_path(@question), class: "btn btn-success me-2" %>
+            <%= button_to 'Удалить вопрос', question_path(@question), method: :delete, class: "btn btn-danger" %>
           </div>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="card mb-3">
+        <div class="card-body">
+          <h5>Ответы</h5>
+          <% @question.answers.each do |answer| %>
+            <div class="card mb-3">
+              <div class="card-body">
+                <div class="d-flex align-items-center mb-2">
+                  <%= image_tag answer.user.avatar.url(:thumb), class: "rounded-circle me-3", alt: answer.user.name, width: "40", height: "40" %>
+                  <div>
+                    <h6 class="mb-0"><%= answer.user.name %></h6>
+                    <p class="text-muted mb-0">@<%= answer.user.nickname %></p>
+                  </div>
+                </div>
+                <p><%= answer.body %></p>
+                <p class="text-muted"><small><%= time_ago_in_words(answer.created_at) %> назад</small></p>
+              </div>
+            </div>
+          <% end %>
+
+          <% if current_user %>
+            <%= form_with(model: [@question, @question.answers.build], local: true) do |form| %>
+              <div class="mb-3">
+                <%= form.label :body, "Ваш ответ" %>
+                <%= form.text_area :body, class: "form-control", rows: 3 %>
+              </div>
+              <%= form.submit "Ответить", class: "btn btn-primary" %>
+            <% end %>
+          <% else %>
+            <p class="text-muted">Вы должны <%= link_to 'войти', new_session_path %> или <%= link_to 'зарегистрироваться', new_user_path %> для ответа на вопрос.</p>
+          <% end %>
         </div>
       </div>
     </div>

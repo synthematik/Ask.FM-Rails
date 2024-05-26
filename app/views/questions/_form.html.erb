@@ -1,13 +1,9 @@
 <%= form_with model: question do |form| %>
   <div class="mb-3">
-    <%= form.label :user_id, class: "form-label" %>
-    <%= form.select :user_id, options_from_collection_for_select(@users, :id, :name), { include_blank: 'Выберите пользователя' }, class: "form-select" %>
-  </div>
-  <div class="mb-3">
     <%= form.label :body, "Текст вопроса", class: "form-label" %>
-    <%= form.text_area :body, class: "form-control", rows: "3" %>
+    <%= form.text_area :body, class: "form-control", rows: "5" %>
   </div>
   <div class="d-grid">
-    <%= form.submit "Сохранить", class: "btn btn-success" %>
+    <%= form.submit "Сохранить", class: "btn btn-primary" %>
   </div>
 <% end %>

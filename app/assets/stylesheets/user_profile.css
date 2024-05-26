@@ -51,16 +51,24 @@
 }
 
 .profile-questions .list-group-item a {
-    color: #000; /* Черный цвет для ссылок */
-    text-decoration: none; /* Убираем подчеркивание */
+    color: #000;
+    text-decoration: none;
 }
 
 .profile-questions .list-group-item a:hover {
-    color: #007bff; /* Синий цвет при наведении */
-    text-decoration: underline; /* Подчеркивание при наведении */
+    color: #007bff;
+    text-decoration: underline;
 }
 
 .question-content {
+    background-color: #f9f9f9;
+    border: 1px solid #e1e4e8;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 10px;
+}
+
+.answer-content {
     background-color: #f9f9f9;
     border: 1px solid #e1e4e8;
     border-radius: 8px;

@@ -11,7 +11,7 @@ class QuestionTest < ActiveSupport::TestCase
 
   test "body should be present" do
     @question.body = "     "
-    assert @question.valid?
+    refute @question.valid?
   end
 
   test "user should be present" do
