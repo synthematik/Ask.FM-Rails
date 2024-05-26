@@ -4,13 +4,14 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.create(
+    @user = User.new(
       user_params
     )
 
     if @user.save
       redirect_to root_path, notice: 'Регистрация прошла успешно'
     else
+      flash.now[:notice] = 'Вы неправильно заполнили поля формы регистрации'
       render :new
     end
 
@@ -27,10 +28,8 @@ class UsersController < ApplicationController
 
   def update
     @user = current_user
-    if @user.update(
-      user_params
-    )
-    redirect_to user_path(@user), notice: "Профиль обновлен"
+    if @user.update(user_params)
+      redirect_to user_path(@user), notice: "Профиль обновлен"
     else
       render :edit
     end
@@ -38,6 +37,15 @@ class UsersController < ApplicationController
   1
   def edit
     @user = current_user
+  end
+
+  def destroy
+    @user = current_user
+    @user.destroy
+
+    session.delete(:user_id)
+
+    redirect_to root_path, notice: 'Профиль удалён'
   end
 
   private
