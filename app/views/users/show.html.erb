@@ -7,6 +7,7 @@
           <h1 class="display-4"><b><%= @user.name %></b></h1>
           <p class="text-muted">@<%= @user.nickname %></p>
           <p><%= @user.email %></p>
+          <% if @user.id == @current_user&.id %>
           <div class="mb-3">
             <%= link_to 'Редактировать профиль', edit_user_path(@user), class: "btn btn-primary" %>
           </div>
@@ -16,12 +17,13 @@
                           form: {data: { turbo_confirm: "Вы точно хотите удалить профиль?"}},
                           class: 'btn btn-danger'%>
           </div>
+          <% end %>
         </div>
         <hr>
         <div class="profile-body">
           <div class="profile-questions">
             <h2 class="h4">Мои вопросы</h2>
-            <% if @user_questions %>
+            <% unless @user_questions.empty? %>
               <div class="list-group">
                 <% @user_questions.each do |question| %>
                   <div class="list-group-item list-group-item-action">

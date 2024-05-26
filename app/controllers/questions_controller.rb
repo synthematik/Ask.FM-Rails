@@ -1,5 +1,6 @@
 class QuestionsController < ApplicationController
   before_action :set_question, only: %i[show edit update destroy]
+  before_action :set_users, only: %i[new edit update]
 
   def create
     @question = Question.new(
@@ -41,7 +42,6 @@ class QuestionsController < ApplicationController
 
   def new
     @question = Question.new
-    @users = User.all
   end
 
   def edit
@@ -55,5 +55,9 @@ class QuestionsController < ApplicationController
 
   def set_question
     @question = Question.find(params[:id])
+  end
+
+  def set_users
+    @users = User.all
   end
 end
