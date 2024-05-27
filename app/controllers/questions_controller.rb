@@ -35,7 +35,7 @@ class QuestionsController < ApplicationController
       archived_at: Time.now
     )
 
-    redirect_to questions_path, notice: "Вопрос удален"
+    redirect_to users_path, notice: "Вопрос удален"
   end
 
   def index
