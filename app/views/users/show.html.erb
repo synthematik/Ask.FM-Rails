@@ -6,16 +6,15 @@
           <%= image_tag @user.avatar.url(:thumb), class: "rounded-circle mb-3", alt: @user.name, width: "150", height: "150" %>
           <h1 class="display-4"><b><%= @user.name %></b></h1>
           <p class="text-muted">@<%= @user.nickname %></p>
-          <p><%= @user.email %></p>
           <% if @user.id == @current_user&.id %>
           <div class="mb-3">
-            <%= link_to 'Редактировать профиль', edit_user_path(@user), class: "btn btn-primary" %>
+            <%= link_to 'Редактировать профиль', edit_user_path(@user), class: "btn btn-outline-success" %>
           </div>
           <div class="mb-3">
             <%= button_to "Удалить профиль", user_path(@user),
                           method: :delete,
                           form: {data: { turbo_confirm: "Вы точно хотите удалить профиль?"}},
-                          class: 'btn btn-danger'%>
+                          class: 'btn btn-outline-danger'%>
           </div>
           <% end %>
         </div>
@@ -33,7 +32,7 @@
                     </div>
                     <p class="mb-1"><%= question.body %></p>
                     <div class="d-flex justify-content-end">
-                      <%= link_to 'Ответить', question_path(question), class: "btn btn-secondary btn-sm text" %>
+                      <%= button_to 'Ответить', question_path(question), method: :get, class: "btn btn-outline-success" %>
                     </div>
                   </div>
                 <% end %>

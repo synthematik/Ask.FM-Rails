@@ -15,8 +15,8 @@
           </div>
           <% if current_user && @question.user.id == @current_user.id %>
           <div class="d-flex justify-content-between mb-3">
-            <%= link_to 'Изменить вопрос', edit_question_path(@question), class: "btn btn-success me-2" %>
-            <%= button_to 'Удалить вопрос', question_path(@question), method: :delete, class: "btn btn-danger" %>
+            <%= link_to 'Изменить вопрос', edit_question_path(@question), class: "btn btn-outline-success me-2" %>
+            <%= button_to 'Удалить вопрос', question_path(@question), method: :delete, class: "btn btn-outline-danger" %>
           </div>
           <% end %>
         </div>
@@ -47,7 +47,7 @@
                 <%= form.label :body, "Ваш ответ" %>
                 <%= form.text_area :body, class: "form-control", rows: 3 %>
               </div>
-              <%= form.submit "Ответить", class: "btn btn-primary" %>
+              <%= form.submit "Ответить", class: "btn btn-outline-success" %>
             <% end %>
           <% else %>
             <p class="text-muted">Вы должны <%= link_to 'войти', new_session_path %> или <%= link_to 'зарегистрироваться', new_user_path %> для ответа на вопрос.</p>

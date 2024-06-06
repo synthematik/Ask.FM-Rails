@@ -30,9 +30,9 @@
               <%= f.label :password, "Пароль" %>
               <%= f.password_field :password, class: "form-control" %>
             </div>
-            <div class="form-group" style="margin-bottom: 15px">
+            <div class="form-label" style="margin-bottom: 15px">
               <%= f.label :avatar, "Аватар" %>
-              <%= f.file_field :avatar, class: "form-control-file" %>
+              <%= f.file_field :avatar, class: "form-control" %>
               <% if @user.avatar? %>
                 <div class="mt-3">
                   <%= image_tag @user.avatar.url(:thumb), class: "rounded-circle", alt: @user.name, width: "150", height: "150" %>
@@ -40,7 +40,7 @@
               <% end %>
             </div>
             <div class="form-group mt-4">
-              <%= f.submit "Обновить профиль", class: "btn btn-primary" %>
+              <%= f.submit "Обновить профиль", class: "btn btn-outline-success" %>
             </div>
           </div>
         </div>

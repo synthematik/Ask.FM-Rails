@@ -38,9 +38,11 @@
               <div class="dropdown">
                 <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><%= image_tag current_user.avatar.url(:thumb), class: "rounded-circle", alt: current_user.name, width: "40", height: "40" %></a>
                 <ul class="dropdown-menu" style="margin-left: -40px">
-                  <%= button_to 'Мой профиль', user_path(current_user.id), method: :get, class: "dropdown-item"%>
-                  <%= button_to 'Задать вопрос', new_question_path, method: :get, class: "dropdown-item"%>
-                  <li><a class="dropdown-item nav-item"><%= button_to 'Выйти', session_path, method: :delete, class: "btn btn-danger" %></a></li>
+                  <li><%= link_to 'Мой профиль', user_path(current_user.id), method: :get, class: "dropdown-item" %></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><%= link_to 'Задать вопрос', new_question_path, method: :get, class: "dropdown-item" %></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><%= button_to 'Выйти', session_path, method: :delete, class: "dropdown-item text-danger" %></li>
                 </ul>
               </div>
             </li>
