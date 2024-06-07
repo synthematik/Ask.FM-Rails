@@ -17,50 +17,8 @@
   </head>
 
   <body>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container">
-      <a class="navbar-brand" href="/">Ask.FM</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav" style="margin-left: 35%">
-          <li class="nav-item">
-            <a class="nav-link" href="/">Главная</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/users">Пользователи</a>
-          </li>
-        </ul>
-        <% if current_user.present? %>
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item">
-              <div class="dropdown">
-                <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><%= image_tag current_user.avatar.url(:thumb), class: "rounded-circle", alt: current_user.name, width: "40", height: "40" %></a>
-                <ul class="dropdown-menu" style="margin-left: -40px">
-                  <li><%= link_to 'Мой профиль', user_path(current_user.id), method: :get, class: "dropdown-item" %></li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li><%= link_to 'Задать вопрос', new_question_path, method: :get, class: "dropdown-item" %></li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li><%= button_to 'Выйти', session_path, method: :delete, class: "dropdown-item text-danger" %></li>
-                </ul>
-              </div>
-            </li>
-          </ul>
-        <%else %>
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="/session/new">Войти</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/users/new">Зарегистрироваться</a>
-            </li>
-          </ul>
 
-        <% end %>
-      </div>
-    </div>
-  </nav>
+  <%= render 'layouts/navbar' %>
 
   <% if flash[:notice].present? %>
     <div class="container mt-4">

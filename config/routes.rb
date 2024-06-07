@@ -3,6 +3,9 @@ Rails.application.routes.draw do
 
   resources :questions do
     resources :answers, only: %i[create]
+    collection do
+      get 'search'
+    end
   end
   resource :session, only: %i[new create destroy]
   resources :users

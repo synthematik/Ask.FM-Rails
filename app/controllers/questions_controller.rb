@@ -44,6 +44,14 @@ class QuestionsController < ApplicationController
     @users = User.all
   end
 
+  def search
+    query = params[:query]
+    @questions = Question.where("title LIKE ? OR body LIKE ?", "%#{query}%", "%#{query}%")
+    @questions_form = Question.new
+    @users = User.all
+    render :index
+  end
+
   def new
     @question = Question.new
   end
