@@ -29,7 +29,6 @@ bundle install
 4. Создайте базу данных и выполните миграции:
 
 ```bash
-rails db:create
 rails db:migrate
 ```
 5. Запустите сервер приложения:
