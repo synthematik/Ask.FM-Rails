@@ -1,23 +1,23 @@
 <div class="container mt-4">
   <div class="row">
     <div class="col-md-8 offset-md-2">
-      <% @questions.each do |question| %>
-        <div class="card mb-3">
-          <div class="card-body">
-            <%= render 'question', question: question %>
-            <%= link_to 'Подробнее', question_path(question.id), class: 'btn btn-secondary' %>
+      <% if @questions.empty? %>
+        <div class="alert alert-warning text-center">
+          Вопрос не найден
+        </div>
+      <% else %>
+        <% @questions.each do |question| %>
+          <div class="card mb-4 shadow-sm">
+            <div class="card-body">
+              <p class="card-text"><%= truncate(question.body, length: 150) %></p>
+              <%= link_to 'Подробнее', question_path(question.id), class: 'btn btn-outline-secondary' %>
+            </div>
+            <div class="card-footer text-muted">
+              Опубликовано <%= time_ago_in_words(question.created_at, locale: :ru) %> назад
+            </div>
           </div>
-        </div>
+        <% end %>
       <% end %>
-      <div class="card" style="margin-top: 20px">
-        <div class="card-body">
-          <%= render partial: "questions/form", locals:{ question: @questions_form} %>
-        </div>
-      </div>
     </div>
   </div>
-</div>
-
-<div class="container mt-4">
-
 </div>

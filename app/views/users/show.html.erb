@@ -21,18 +21,18 @@
         <hr>
         <div class="profile-body">
           <div class="profile-questions">
-            <h2 class="h4">Мои вопросы</h2>
+            <h2 class="h4">Вопросы</h2>
             <% unless @user_questions.empty? %>
               <div class="list-group">
                 <% @user_questions.each do |question| %>
                   <div class="list-group-item list-group-item-action">
                     <div class="d-flex w-100 justify-content-between">
                       <h5 class="mb-1"><%= question.body.truncate(50) %></h5>
-                      <small><%= time_ago_in_words(question.created_at) %> назад</small>
+                      <small><%= time_ago_in_words(question.created_at, locale: :ru) %> назад</small>
                     </div>
                     <p class="mb-1"><%= question.body %></p>
                     <div class="d-flex justify-content-end">
-                      <%= button_to 'Ответить', question_path(question), method: :get, class: "btn btn-outline-success" %>
+                      <%= button_to 'Комментировать', question_path(question), method: :get, class: "btn btn-outline-success" %>
                     </div>
                   </div>
                 <% end %>
