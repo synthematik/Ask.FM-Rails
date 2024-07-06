@@ -9,7 +9,8 @@ class UsersController < ApplicationController
     )
 
     if @user.save
-      redirect_to root_path, notice: 'Регистрация прошла успешно'
+      session[:user_id] = @user.id
+      redirect_to user_path(@user.id), notice: 'Регистрация прошла успешно'
     else
       flash.now[:notice] = 'Вы неправильно заполнили поля формы регистрации'
       render :new
